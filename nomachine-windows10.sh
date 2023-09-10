@@ -16,7 +16,7 @@ function goto
 : ngrok
 clear
 
-read -p "Paste Louay Authtoken: " CRP
+read -p "Paste Louli Authtoken: " CRP
 ./ngrok authtoken $CRP 
 
 clear

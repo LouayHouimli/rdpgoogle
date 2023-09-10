@@ -20,7 +20,7 @@ read -p "Paste Louli Authtoken: " CRP
 ./ngrok authtoken $CRP 
 
 clear
-echo "Repo: https://github.com/kmille36/Docker-Ubuntu-Desktop-NoMachine"
+echo "Reposti: https://github.com/kmille36/Docker-Ubuntu-Desktop-NoMachine"
 echo "======================="
 echo "choose ngrok region (for better connection)."
 echo "======================="

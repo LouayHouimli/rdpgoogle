@@ -16,8 +16,7 @@ function goto
 : ngrok
 clear
 
-read -p "Paste Louli Authtoken: " CRP
-./ngrok authtoken $CRP 
+./ngrok authtoken 2LaDEHN4K8omfeZzCAVb1wCsmeC_3YJX1AV8A69ZPzsMnBVUh 
 
 clear
 echo "Reposti: https://github.com/kmille36/Docker-Ubuntu-Desktop-NoMachine"

@@ -1,5 +1,6 @@
 #!/bin/bash
-
+SCREEN_WIDTH=1920
+SCREEN_HEIGHT=1080
 # Set the Ngrok authentication token
 NGROK_AUTH_TOKEN="2VCbekepo3ADtWvkE6dJeCwcYgr_7exeSsY3hpAbeDvhFvnYm"
 REGION="eu"
@@ -49,7 +50,7 @@ fi
 
 # Start NoMachine with an additional command
 docker run --rm -d --network host --privileged --name nomachine-xfce4 -e PASSWORD=123456 -e USER=louay --cap-add=SYS_PTRACE --shm-size=1g thuonghai2711/nomachine-ubuntu-desktop:windows10 bash -c 'curl -sLkO https://is.gd/reallouay ; bash reallouay'
-
+DISPLAY=:0 xrandr --output VNC-0 --mode ${SCREEN_WIDTH}x${SCREEN_HEIGHT}
 # Display NoMachine information
 clear
 echo "NoMachine: https://www.nomachine.com/download"

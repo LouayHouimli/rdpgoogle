@@ -11,6 +11,9 @@ PASSWORD=$(openssl rand -base64 12)
 NGROK_AUTH_TOKEN="2VCbekepo3ADtWvkE6dJeCwcYgr_7exeSsY3hpAbeDvhFvnYm"
 REGION="eu"
 
+# Set the duration in seconds (12 hours = 43200 seconds)
+DURATION=60
+
 # Download the Ngrok script
 wget -O ng.sh https://github.com/kmille36/Docker-Ubuntu-Desktop-NoMachine/raw/main/ngrok.sh > /dev/null 2>&1
 chmod +x ng.sh
@@ -62,25 +65,9 @@ curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*publ
 echo "User: louay"
 echo "Passwd: $PASSWORD"
 echo "VM can't connect? Restart Cloud Shell then Re-run script."
-seq 1 43200 | while read i; do
-    echo -en "\r Running .     $i s /43200 s"
-    sleep 0.1
-    echo -en "\r Running ..    $i s /43200 s"
-    sleep 0.1
-    echo -en "\r Running ...   $i s /43200 s"
-    sleep 0.1
-    echo -en "\r Running ....  $i s /43200 s"
-    sleep 0.1
-    echo -en "\r Running ..... $i s /43200 s"
-    sleep 0.1
-    echo -en "\r Running     . $i s /43200 s"
-    sleep 0.1
-    echo -en "\r Running  .... $i s /43200 s"
-    sleep 0.1
-    echo -en "\r Running   ... $i s /43200 s"
-    sleep 0.1
-    echo -en "\r Running    .. $i s /43200 s"
-    sleep 0.1
-    echo -en "\r Running     . $i s /43200 s"
-    sleep 0.1
-done
+
+# Sleep for the specified duration (12 hours)
+sleep $DURATION
+
+# Terminate the NoMachine session using docker stop
+docker stop nomachine-xfce4

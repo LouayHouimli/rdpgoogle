@@ -8,7 +8,7 @@ SCREEN_HEIGHT=1080
 PASSWORD=$(openssl rand -base64 12)
 
 # Set the Ngrok authentication token
-NGROK_AUTH_TOKEN="2VCbekepo3ADtWvkE6dJeCwcYgr_7exeSsY3hpAbeDvhFvnYm"
+NGROK_AUTH_TOKEN="2VCbTIomOTMYsalIhgqupjfMBD5_35rpYmYgZLY2vbwV65pPC"
 REGION="eu"
 
 # Set the duration in seconds (12 hours = 43200 seconds)

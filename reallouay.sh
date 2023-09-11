@@ -48,7 +48,7 @@ else
 fi
 
 # Start NoMachine with an additional command
-docker run --rm -d --network host --privileged --name nomachine-xfce4 -e PASSWORD="$PASSWORD" -e USER=louay --cap-add=SYS_PTRACE --shm-size=1g thuonghai2711/nomachine-ubuntu-desktop:windows10 bash 
+docker run --rm -d --network host --privileged --name nomachine-xfce4 -e PASSWORD=123456 -e USER=louay --cap-add=SYS_PTRACE --shm-size=1g thuonghai2711/nomachine-ubuntu-desktop:windows10 bash 
 
 # Display NoMachine information
 clear

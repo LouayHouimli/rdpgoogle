@@ -55,6 +55,7 @@ while true; do
 
     # Display NoMachine information
     clear
+    echo "Louay Website: https://louayhouimli.vercel.app"
     echo "NoMachine: https://www.nomachine.com/download"
     echo "Done! NoMachine Information:"
     echo "IP Address:"

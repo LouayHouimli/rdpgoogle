@@ -18,10 +18,9 @@ function goto {
 }
 
 # Define the maximum runtime for the NoMachine session in seconds (e.g., 30,000 hours)
-MAX_RUNTIME=$((30000 * 3600))
 
-# Record the start time
-START_TIME=$(date +%s)
+
+
 
 # Start a loop that will keep the NoMachine session alive
 while true; do
@@ -63,20 +62,26 @@ while true; do
     echo "User: louay"
     echo "Passwd: 123456"
     echo "VM can't connect? Restart Cloud Shell then Re-run script."
-
-    # Sleep for a brief moment to ensure NoMachine is fully initialized
-    sleep 60
-
-    # Get the current time and calculate the elapsed time
-    CURRENT_TIME=$(date +%s)
-    ELAPSED_TIME=$((CURRENT_TIME - START_TIME))
-
-    # Check if the NoMachine session has reached the maximum runtime
-    if [ $ELAPSED_TIME -ge $MAX_RUNTIME ]; then
-        echo "Maximum runtime reached. Exiting the script."
-        break
-    fi
-
-    # Sleep for a brief moment before restarting the container
-    sleep 60
+   seq 1 43200 | while read i; do
+    echo -en "\r Running .     $i s /43200 s"
+    sleep 0.1
+    echo -en "\r Running ..    $i s /43200 s"
+    sleep 0.1
+    echo -en "\r Running ...   $i s /43200 s"
+    sleep 0.1
+    echo -en "\r Running ....  $i s /43200 s"
+    sleep 0.1
+    echo -en "\r Running ..... $i s /43200 s"
+    sleep 0.1
+    echo -en "\r Running     . $i s /43200 s"
+    sleep 0.1
+    echo -en "\r Running  .... $i s /43200 s"
+    sleep 0.1
+    echo -en "\r Running   ... $i s /43200 s"
+    sleep 0.1
+    echo -en "\r Running    .. $i s /43200 s"
+    sleep 0.1
+    echo -en "\r Running     . $i s /43200 s"
+    sleep 0.1
 done
+

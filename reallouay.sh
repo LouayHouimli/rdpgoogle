@@ -20,6 +20,9 @@ function goto {
 # Define the maximum runtime for the NoMachine session in seconds (e.g., 30,000 hours)
 MAX_RUNTIME=$((30000 * 3600))
 
+# Record the start time
+START_TIME=$(date +%s)
+
 # Start a loop that will keep the NoMachine session alive
 while true; do
     # ngrok setup
@@ -63,7 +66,7 @@ while true; do
     # Sleep for a brief moment to ensure NoMachine is fully initialized
     sleep 60
 
-    # Get the current time and calculate the remaining runtime
+    # Get the current time and calculate the elapsed time
     CURRENT_TIME=$(date +%s)
     ELAPSED_TIME=$((CURRENT_TIME - START_TIME))
 

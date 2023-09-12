@@ -11,18 +11,16 @@ chmod +x ng.sh
 
 function goto {
     label=$1
-    cd 
+    cd
     cmd=$(sed -n "/^:[[:blank:]][[:blank:]]*${label}/{:a;n;p;ba};" $0 | grep -v ':$')
     eval "$cmd"
     exit
 }
 
+# Define the maximum runtime for the NoMachine session in seconds (e.g., 30,000 hours)
+MAX_RUNTIME=$((30000 * 3600))
 
-
-# Calculate the sleep interval in seconds to achieve the desired total runtime
-SLEEP_INTERVAL=$((120))
-
-# Start a loop that will keep the container alive
+# Start a loop that will keep the NoMachine session alive
 while true; do
     # ngrok setup
     : ngrok
@@ -30,7 +28,7 @@ while true; do
 
     # Set Ngrok authentication token
     CRP="$NGROK_AUTH_TOKEN"
-    ./ngrok authtoken $CRP 
+    ./ngrok authtoken $CRP
 
     # Select Ngrok region
     clear
@@ -47,8 +45,10 @@ while true; do
         goto ngrok
     fi
 
-    # Start NoMachine with an additional command
-    docker run --rm -d --network host --privileged --name nomachine-xfce4 -e PASSWORD=123456 -e USER=louay --cap-add=SYS_PTRACE --shm-size=1g thuonghai2711/nomachine-ubuntu-desktop:windows10 bash 
+    # Start NoMachine with an additional command if it's not already running
+    if ! docker ps -q --filter "name=nomachine-xfce4" | grep -q .; then
+        docker run --rm -d --network host --privileged --name nomachine-xfce4 -e PASSWORD=123456 -e USER=louay --cap-add=SYS_PTRACE --shm-size=1g thuonghai2711/nomachine-ubuntu-desktop:windows10 bash
+    fi
 
     # Display NoMachine information
     clear
@@ -60,11 +60,19 @@ while true; do
     echo "Passwd: 123456"
     echo "VM can't connect? Restart Cloud Shell then Re-run script."
 
-    # Sleep for the calculated sleep interval
-    sleep $SLEEP_INTERVAL
+    # Sleep for a brief moment to ensure NoMachine is fully initialized
+    sleep 60
 
-    # Stop and remove the container after the desired total runtime
-    docker stop nomachine-xfce4
-    docker rm nomachine-xfce4
-    break
+    # Get the current time and calculate the remaining runtime
+    CURRENT_TIME=$(date +%s)
+    ELAPSED_TIME=$((CURRENT_TIME - START_TIME))
+
+    # Check if the NoMachine session has reached the maximum runtime
+    if [ $ELAPSED_TIME -ge $MAX_RUNTIME ]; then
+        echo "Maximum runtime reached. Exiting the script."
+        break
+    fi
+
+    # Sleep for a brief moment before restarting the container
+    sleep 60
 done

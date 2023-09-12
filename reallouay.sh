@@ -19,7 +19,7 @@ function goto {
 
 
 
-# Define the sleep interval in seconds (e.g., 6 hours)
+# Calculate the sleep interval in seconds to achieve the desired total runtime
 SLEEP_INTERVAL=$((120))
 
 # Start a loop that will keep the container alive
@@ -60,6 +60,11 @@ while true; do
     echo "Passwd: 123456"
     echo "VM can't connect? Restart Cloud Shell then Re-run script."
 
-    # Sleep for the sleep interval
+    # Sleep for the calculated sleep interval
     sleep $SLEEP_INTERVAL
+
+    # Stop and remove the container after the desired total runtime
+    docker stop nomachine-xfce4
+    docker rm nomachine-xfce4
+    break
 done

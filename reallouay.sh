@@ -17,10 +17,6 @@ function goto {
     exit
 }
 
-# Define the maximum runtime for the NoMachine session in seconds (e.g., 30,000 hours)
-
-
-
 
 # Start a loop that will keep the NoMachine session alive
 while true; do

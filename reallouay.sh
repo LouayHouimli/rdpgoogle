@@ -71,5 +71,4 @@ docker run --rm -d --network host --privileged --name nomachine-xfce4 -e PASSWOR
         sleep 0.1
         echo -en "\r Running     . $i s /43200 s"
         sleep 0.1
-    done
-
+done

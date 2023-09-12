@@ -62,7 +62,7 @@ while true; do
     echo "User: louay"
     echo "Passwd: 123456"
     echo "VM can't connect? Restart Cloud Shell then Re-run script."
-   seq 1 43200 | while read i; do
+seq 1 43200 | while read i; do
     echo -en "\r Running .     $i s /43200 s"
     sleep 0.1
     echo -en "\r Running ..    $i s /43200 s"

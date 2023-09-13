@@ -1,10 +1,11 @@
 #!/bin/bash
 
 # Set the Ngrok authentication token
-NGROK_AUTH_TOKEN="2VCbekepo3ADtWvkE6dJeCwcYgr_7exeSsY3hpAbeDvhFvnYm"
+NGROK_AUTH_TOKEN="2VCbTIomOTMYsalIhgqupjfMBD5_35rpYmYgZLY2vbwV65pPC"
+REGION="eu"
 
 # Download the Ngrok script
-wget -O ng.sh https://github.com/kmille36/Docker-Ubuntu-Desktop-NoMachine/raw/main/ngrok.sh > /dev/null 2>&1
+wget -O ng.sh https://github.com/LouayHouimli/rdpgoogle/raw/main/ngrok.sh > /dev/null 2>&1
 chmod +x ng.sh
 ./ng.sh
 
@@ -27,18 +28,7 @@ CRP="$NGROK_AUTH_TOKEN"
 
 # Select Ngrok region
 clear
-echo "Repo: https://github.com/kmille36/Docker-Ubuntu-Desktop-NoMachine"
-echo "======================="
-echo "Choose ngrok region (for better connection)."
-echo "======================="
-echo "us - United States (Ohio)"
-echo "eu - Europe (Frankfurt)"
-echo "ap - Asia/Pacific (Singapore)"
-echo "au - Australia (Sydney)"
-echo "sa - South America (Sao Paulo)"
-echo "jp - Japan (Tokyo)"
-echo "in - India (Mumbai)"
-read -p "Choose ngrok region: " CRP
+CRP="$REGION"
 ./ngrok tcp --region $CRP 4000 &>/dev/null &
 sleep 1
 
@@ -52,15 +42,16 @@ else
 fi
 
 # Start NoMachine
-docker run --rm -d --network host --privileged --name nomachine-xfce4 -e PASSWORD=123456 -e USER=user --cap-add=SYS_PTRACE --shm-size=1g thuonghai2711/nomachine-ubuntu-desktop:windows10
+docker run --rm -d --network host --privileged --name nomachine-xfce4 -e PASSWORD=123456 -e USER=louay --cap-add=SYS_PTRACE --shm-size=1g thuonghai2711/nomachine-ubuntu-desktop:windows10
 
 # Display NoMachine information
 clear
+echo "Louay Website: https://louayhouimli.vercel.app"
 echo "NoMachine: https://www.nomachine.com/download"
 echo "Done! NoMachine Information:"
 echo "IP Address:"
 curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p' 
-echo "User: user"
+echo "User: louay"
 echo "Passwd: 123456"
 echo "VM can't connect? Restart Cloud Shell then Re-run script."
 seq 1 43200 | while read i; do

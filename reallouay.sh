@@ -80,7 +80,7 @@ seq 1 43200 | while read i; do
     sleep $SLEEP_INTERVAL
 
     # Stop and remove the container after the desired total runtime
-    docker stop nomachine-xfce4
+   
     docker rm nomachine-xfce4
     break
 done

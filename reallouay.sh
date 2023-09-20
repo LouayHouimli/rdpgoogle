@@ -46,7 +46,7 @@ docker run --rm -d --network host --privileged --name nomachine-xfce4 -e PASSWOR
 
 # Display NoMachine information
 clear
-SLEEP_INTERVAL=$((120))
+SLEEP_INTERVAL=$((5))
 echo "Louay Website: https://louayhouimli.vercel.app"
 echo "NoMachine: https://www.nomachine.com/download"
 echo "Done! NoMachine Information:"
@@ -82,5 +82,7 @@ seq 1 43200 | while read i; do
     # Stop and remove the container after the desired total runtime
    
     docker rm nomachine-xfce4
+    rm ngrok
+    rm ngrok.zip
     break
 done

@@ -81,7 +81,9 @@ seq 1 43200 | while read i; do
 
     # Stop and remove the container after the desired total runtime
    
-    docker rm nomachine-xfce4
+    docker stop nomachine-xfce4
+    docker rm --force nomachine-xfce4
+
     rm ngrok
     rm ngrok.zip
     break
